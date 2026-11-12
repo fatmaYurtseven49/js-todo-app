@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaTask - Görev Yöneticisi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar nova-nav">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">Nova<span class="accent">Task</span></span>
+      <span class="text-white-50 small d-none d-sm-inline">Basit görev yöneticisi - veriler tarayıcınızda saklanır</span>
+    </div>
+  </nav>
+
+  <main class="container py-4" style="max-width: 820px">
+    <!-- EKLE -->
+    <form id="task-form" class="card shadow-sm p-3 mb-4" novalidate>
+      <h2 class="h5 mb-3">Yeni görev ekle</h2>
+      <div class="row g-2">
+        <div class="col-12 col-md-6">
+          <input id="task-title" class="form-control" type="text" maxlength="80" placeholder="Görev başlığı" required />
+          <div class="invalid-feedback">Başlık boş bırakılamaz.</div>
+        </div>
+        <div class="col-6 col-md-3">
+          <select id="task-priority" class="form-select" aria-label="Öncelik">
+            <option value="low">Düşük</option>
+            <option value="medium" selected>Orta</option>
+            <option value="high">Yüksek</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-3">
+          <input id="task-due" class="form-control" type="date" aria-label="Son tarih" />
+        </div>
+        <div class="col-12">
+          <textarea id="task-desc" class="form-control" rows="2" maxlength="300" placeholder="Açıklama (isteğe bağlı)"></textarea>
+        </div>
+        <div class="col-12 d-grid d-md-flex justify-content-md-end">
+          <button class="btn btn-nova" type="submit">Ekle</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- LİSTELE -->
+    <section>
+      <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mb-3">
+        <div class="btn-group" role="group" aria-label="Filtre" id="filters">
+          <button type="button" class="btn btn-outline-secondary active" data-filter="all">Tümü <span class="badge text-bg-secondary" id="count-all">0</span></button>
+          <button type="button" class="btn btn-outline-secondary" data-filter="active">Aktif <span class="badge text-bg-secondary" id="count-active">0</span></button>
+          <button type="button" class="btn btn-outline-secondary" data-filter="done">Tamamlanan <span class="badge text-bg-secondary" id="count-done">0</span></button>
+        </div>
+        <input id="search" class="form-control w-auto flex-grow-1 flex-md-grow-0" type="search" placeholder="Ara..." />
+      </div>
+      <ul id="task-list" class="list-group shadow-sm"></ul>
+      <div class="text-end mt-2">
+        <button id="clear-done" class="btn btn-link btn-sm text-danger">Tamamlananları temizle</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- GÜNCELLE (Modal) -->
+  <div class="modal fade" id="edit-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="edit-form" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title">Görevi düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body vstack gap-2">
+          <input type="hidden" id="edit-id" />
+          <input id="edit-title" class="form-control" type="text" maxlength="80" required />
+          <div class="invalid-feedback">Başlık boş bırakılamaz.</div>
+          <textarea id="edit-desc" class="form-control" rows="3" maxlength="300"></textarea>
+          <div class="row g-2">
+            <div class="col-6">
+              <select id="edit-priority" class="form-select">
+                <option value="low">Düşük</option>
+                <option value="medium">Orta</option>
+                <option value="high">Yüksek</option>
+              </select>
+            </div>
+            <div class="col-6"><input id="edit-due" class="form-control" type="date" /></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Vazgeç</button>
+          <button type="submit" class="btn btn-nova">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

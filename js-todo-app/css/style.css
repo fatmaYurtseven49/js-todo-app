@@ -1,0 +1,19 @@
+:root { --nova: #1f3a5f; --nova-accent: #e07a2f; }
+body { background: #f4f6f9; }
+.nova-nav { background: var(--nova); }
+.nova-nav .navbar-brand { color: #fff; font-weight: 700; letter-spacing: .3px; }
+.nova-nav .accent { color: var(--nova-accent); }
+.btn-nova { background: var(--nova); color: #fff; border: 0; }
+.btn-nova:hover { background: #162b47; color: #fff; }
+#filters .btn.active { background: var(--nova); border-color: var(--nova); color: #fff; }
+
+.task-item { gap: .75rem; }
+.task-item .title { font-weight: 600; }
+.task-item.done .title { text-decoration: line-through; color: #8a919a; }
+.task-item.done .desc { color: #a8aeb6; }
+.task-item .desc { font-size: .9rem; color: #5b636d; white-space: pre-wrap; word-break: break-word; }
+.badge-prio-high { background: #c0392b; }
+.badge-prio-medium { background: #e07a2f; }
+.badge-prio-low { background: #2e8b57; }
+.overdue { color: #c0392b; font-weight: 600; }
+.empty { text-align: center; color: #8a919a; padding: 2rem 1rem; }
